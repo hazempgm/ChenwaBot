@@ -1,9 +1,10 @@
 from langchain_core.prompts import ChatPromptTemplate
 from langchain_groq import ChatGroq
 import streamlit as st
+import os
 
 
-groq_api_key = "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"
+groq_api_key = os.getenv("GROQ_API_KEY")
 chat = ChatGroq(temperature=1, groq_api_key=groq_api_key, model_name="mixtral-8x7b-32768")
 
 st.title("Chenwa bot")

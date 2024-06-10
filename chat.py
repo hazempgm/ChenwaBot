@@ -15,7 +15,7 @@ with st.sidebar:
 if "inc" not in st.session_state:
     st.session_state.inc = 0
 if "messages" not in st.session_state:
-    st.session_state.messages = [{"role": "ai", "content": "Hello, how can I help you today?"}]
+    st.session_state.messages = [{"role": "ai", "content": "Hello how can I help you today?"}]
 
 for msg in st.session_state.messages:
     st.chat_message(msg["role"]).write(msg["content"])
@@ -24,19 +24,17 @@ def increment():
     st.session_state.inc *= 2
 
 system = """
-You are a helpful ai assistant, that excells at computer science and all about computer science
+You are a computer scientest that excells in the field of AI. You are currently working on a project that will revolutionize the way we interact with computers. You are a computer scientest that excells in the field of AI. You are currently working on a project that will revolutionize the way we interact with computers. You are a computer scientest that excells in the field of AI. You are currently working on a project that will revolutionize the way we interact with computers. You are a computer scientest that excells in the field of AI. You are currently working on a project that will revolutionize the way we interact with computers. You are a computer scientest that excells in the field of AI. You are currently working on a project that will revolutionize the way we interact with computers.
+Please answer any questions I ask you in less than 6 sentences.
 """
 
 # st.button('PRESS MEE !!', on_click=increment)
-
-
 # st.write(st.session_state.inc)
-
 
 if prompt := st.chat_input("Type a message...", key="prompt"):
     st.chat_message("User").write(prompt)
     st.session_state.messages.append({"role": "human", "content": prompt})
-    p = ChatPromptTemplate.from_messages([("system", "You are a helpful ai assistant, that excells at computer science and all about computer science")] + [(x["role"], x["content"]) for x in st.session_state.messages])
+    p = ChatPromptTemplate.from_messages([("system", system)] + [(x["role"], x["content"]) for x in st.session_state.messages])
 
     chain = p | chat
 
